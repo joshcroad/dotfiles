@@ -1,0 +1,27 @@
+[user]
+	name = Joshua Croad
+	email = joshcroad@gmail.com
+[core]
+	excludesfile = /Users/joshcroad/.gitignore_global
+	pager = cat
+	editor = /usr/bin/vim
+[push]
+	default = simple
+
+[color]
+	branch = auto
+	diff = auto
+	status = auto
+[color "branch"]
+	current = blue reverse
+	local = yellow
+	remote = red
+[color "diff"]
+	meta = yellow bold
+	frag = magenta bold
+	old = red bold
+	new = green bold
+[color "status"]
+	added = green
+	changed = yellow
+	untracked = blue
