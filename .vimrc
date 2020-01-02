@@ -17,6 +17,8 @@ call vundle#begin()
 
   " Language support
   Plugin 'sheerun/vim-polyglot'
+  Plugin 'dense-analysis/ale'
+  Plugin 'mitermayer/vim-prettier'
 
   " Helpers
   Plugin 'godlygeek/tabular'
@@ -76,9 +78,12 @@ let g:airline#extensions#tabline#formatter='unique_tail'
 let g:airline_theme='minimalist'
 let g:rustfmt_autosave=1
 let g:tabular_loaded=1
+let g:terraform_align=1
+let g:terraform_fmt_on_save=1
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Custom commands
+command -nargs=0 Terminal vert term
 command JumpToLastCursor if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 command RemoveWhitespace try | :%s/\s\+$//g | catch | echo 'No whitespace' | endtry
 

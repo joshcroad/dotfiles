@@ -7,6 +7,10 @@
 	editor = /usr/bin/vim
 [push]
 	default = simple
+[tag]
+  sort = version:refname
+[credential]
+	helper = osxkeychain
 
 [color]
 	branch = auto
