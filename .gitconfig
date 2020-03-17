@@ -7,13 +7,17 @@
 	editor = /usr/bin/vim
 [push]
 	default = simple
+[tag]
+  sort = version:refname
+[credential]
+	helper = osxkeychain
 
 [color]
 	branch = auto
 	diff = auto
 	status = auto
 [color "branch"]
-	current = blue reverse
+	current = blue
 	local = yellow
 	remote = red
 [color "diff"]
