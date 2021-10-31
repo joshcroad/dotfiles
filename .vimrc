@@ -19,6 +19,8 @@ call vundle#begin()
   Plugin 'sheerun/vim-polyglot'
   Plugin 'dense-analysis/ale'
   Plugin 'mitermayer/vim-prettier'
+  Plugin 'heavenshell/vim-jsdoc'
+  Plugin 'PsychoLlama/further.vim'
 
   " Helpers
   Plugin 'godlygeek/tabular'
