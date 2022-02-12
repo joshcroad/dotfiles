@@ -2,7 +2,7 @@
 	name = Joshua Croad
 	email = joshcroad@gmail.com
 [core]
-	excludesfile = /Users/joshcroad/.gitignore_global
+	excludesfile = /Users/joshcroad/.gitexcludes
 	pager = cat
 	editor = /usr/bin/vim
 [push]

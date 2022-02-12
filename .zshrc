@@ -74,10 +74,14 @@ HYPHEN_INSENSITIVE="true"
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
   aws
+  docker
+  docker-compose
   fasd
+  gh
   git
   git-prompt
   kubectl
+  node
   nvm
   ripgrep
   terraform
