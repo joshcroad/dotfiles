@@ -1,18 +1,20 @@
+
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
 export ZSH="/Users/joshcroad/.oh-my-zsh"
 
-# Set a path
-export PATH="$HOME/bin:$HOME/.bin:$HOME/.cargo/bin:/usr/local/lib/node_modules:/usr/local/Cellar:/usr/local/bin:$PATH"
-export PATH="/usr/local/opt/helm@2/bin:$PATH"
+# Setup the PATH variable
+export PATH="/usr/local/opt/gnu-sed/libexec/gnubin:$HOME/.bin:$HOME/.krew/bin:/usr/local/lib/node_modules:/usr/local/Cellar:/usr/local/bin:/usr/local/sbin:$PATH"
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
 ZSH_THEME="norm"
+
+PROMPT_EOL_MARK=''
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -31,7 +33,7 @@ HYPHEN_INSENSITIVE="true"
 # DISABLE_AUTO_UPDATE="true"
 
 # Uncomment the following line to automatically update without prompting.
-# DISABLE_UPDATE_PROMPT="true"
+DISABLE_UPDATE_PROMPT="true"
 
 # Uncomment the following line to change how often to auto-update (in days).
 # export UPDATE_ZSH_DAYS=13
@@ -46,7 +48,7 @@ HYPHEN_INSENSITIVE="true"
 # DISABLE_AUTO_TITLE="true"
 
 # Uncomment the following line to enable command auto-correction.
-# ENABLE_CORRECTION="true"
+#ENABLE_CORRECTION="true"
 
 # Uncomment the following line to display red dots whilst waiting for completion.
 # COMPLETION_WAITING_DOTS="true"
@@ -75,16 +77,15 @@ HYPHEN_INSENSITIVE="true"
 plugins=(
   aws
   docker
-  docker-compose
   fasd
-  gh
   git
   git-prompt
+  httpie
   kubectl
-  node
   nvm
-  ripgrep
+  rbenv
   terraform
+  tmux
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -96,8 +97,8 @@ source $ZSH/oh-my-zsh.sh
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
 
-# Preferred editor for local and remote sessions
-export EDITOR='vim'
+# Preferred editor
+export EDITOR='nvim'
 
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
@@ -110,7 +111,18 @@ export EDITOR='vim'
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-alias ls='ls'
 alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -CF'
+unalias j
+
+alias dockerstart='colima start --cpu 4 --memory 8'
+alias dockerstop='colima stop'
+
+alias vim="nvim -O"
+
+alias cpu="pmset -g thermlog"
+
+# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
+export PATH="$PATH:$HOME/.rvm/bin"
+nvm use 16.14

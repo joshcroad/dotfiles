@@ -11,6 +11,7 @@ call vundle#begin()
   Plugin 'vim-airline/vim-airline-themes'
   Plugin 'dikiaap/minimalist'
   Plugin 'editorconfig/editorconfig-vim'
+  Plugin 'wesq3/vim-windowswap'
 
   " Colour scheme
   Plugin 'crusoexia/vim-monokai'
@@ -19,14 +20,20 @@ call vundle#begin()
   Plugin 'sheerun/vim-polyglot'
   Plugin 'dense-analysis/ale'
   Plugin 'mitermayer/vim-prettier'
-  Plugin 'heavenshell/vim-jsdoc'
-  Plugin 'PsychoLlama/further.vim'
+  Plugin 'junegunn/vim-easy-align'
+
+  " Git
+  Plugin 'tpope/vim-fugitive'
+  Plugin 'airblade/vim-gitgutter'
 
   " Helpers
+  Plugin 'jremmen/vim-ripgrep'
+  Plugin 'amiorin/vim-fasd'
+  Plugin 'ctrlpvim/ctrlp.vim'
   Plugin 'godlygeek/tabular'
   Plugin 'raimondi/delimitmate'
   Plugin 'tpope/vim-surround'
-  Plugin 'airblade/vim-gitgutter'
+  Plugin 'chrisbra/csv.vim'
 call vundle#end()
 filetype plugin indent on
 
@@ -61,10 +68,13 @@ noremap j h
 noremap k j
 noremap l k
 noremap ; l
-no <Down> <Nop>
-no <Left> <Nop>
-no <Right> <Nop>
-no <Up> <Nop>
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Clipboard copy remapping
+map <C-c> "+y
+
+xmap ga <Plug>)(EasyAlign)
+nmap ga <Plug>(EasyAlign)
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Theme configuration
@@ -72,6 +82,7 @@ set t_Co=256
 syntax on
 set background=dark
 colorscheme monokai
+hi Normal ctermbg=none
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Plugin configuration
@@ -83,11 +94,32 @@ let g:tabular_loaded=1
 let g:terraform_align=1
 let g:terraform_fmt_on_save=1
 
+let g:netrw_liststyle = 3
+let g:netrw_browse_split = 1
+let g:netrw_altv = 1
+
+" ctrl-p configuration
+let g:ctrlp_custom_ignore = '\v[\/](node_modules|target|dist)|(\.(swp|ico|git|svn))$'
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Custom commands
-command -nargs=0 Terminal vert term
+command -nargs=0 Terminal call OpenTerminal()
+command Scheme call OpenSchemeTerminal()
 command JumpToLastCursor if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 command RemoveWhitespace try | :%s/\s\+$//g | catch | echo 'No whitespace' | endtry
+command Duplicates :syn clear Repeat | g/^\(.*\)\n\ze\%(.*\n\)*\1$/exe 'syn match Repeat "^' . escape(getline('.'), '".\^$*[]') . '$"' | nohlsearch
+
+function OpenTerminal()
+  execute 'vert term'
+  let t:bufferNo = bufnr("%")
+  call term_sendkeys(eval(t:bufferNo), "source ~/.profile\<cr>")
+  return t:bufferNo
+endfunc
+
+function OpenSchemeTerminal()
+  let t:bufferNo = OpenTerminal()
+  call term_sendkeys(eval(t:bufferNo), "scheme\<cr>")
+endfunc
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Autocommands
