@@ -2,10 +2,10 @@ let output = '';
 
 const spotify = Application('Spotify')
 
-const colors = {
-  playing: '#[fg=#b3e1a3]',
-  paused: '#[fg=#777777]',
-  stopped: '#[fg=#e28c8c]'
+const style = {
+  playing: '#[fg=#7ea164,bold] ﱘ ',
+  paused: '#[fg=#deb66c,bold] ﱙ ',
+  stopped: '#[fg=#e06b74,bold] ﱙ '
 }
 
 if (spotify.running()) {
@@ -13,11 +13,11 @@ if (spotify.running()) {
   const artist = track.artist()
   const title = track.name()
 
-  const color = colors[spotify.playerState()]
+  const state = spotify.playerState()
 
-  output = `${color}ﱘ  ${title.substr(0, 30)} - ${artist.substr(0, 20)}`
+  output = `${style[state]} ${title.substr(0, 30)} - ${artist.substr(0, 20)}`
 } else {
-  output = `${colors.stopped}ﱘ Spotify not running`
+  output = `${style.stopped}`
 }
 
 output
