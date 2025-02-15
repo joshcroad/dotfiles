@@ -256,7 +256,7 @@ require("lazy").setup({
   },
 
   {
-    'doc/taskpaper.vim',
+    'davidoc/taskpaper.vim',
     ft = 'taskpaper', -- Load the plugin only for TaskPaper files
     config = function()
       vim.opt.task_paper_follow_move = false

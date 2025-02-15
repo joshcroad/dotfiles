@@ -18,7 +18,7 @@ vim.opt.backup = false
 vim.opt.showcmd = true
 vim.opt.cmdheight = 1
 vim.opt.laststatus = 2
-vim.opt.expandtab = false
+vim.opt.expandtab = true
 vim.opt.scrolloff = 10
 vim.opt.shell = 'zsh'
 vim.opt.backupskip = '/tmp/*,/private/tmp/*'
@@ -27,13 +27,32 @@ vim.opt.ignorecase = true
 vim.opt.smarttab = true
 vim.opt.breakindent = true
 vim.opt.mouse = ''
-vim.opt.list = true
 vim.opt.shiftwidth = 2
 vim.opt.tabstop = 2
 vim.opt.wrap = false -- no wrap lines
 vim.opt.backspace = 'start,eol,indent'
 vim.opt.path:append { '**' } -- Findinf files - search down into subfolders
 vim.opt.wildignore:append { '*/node_modules/*' }
+
+vim.opt.list = true -- Enable list mode to show the characters
+vim.opt.listchars = {
+  space = '·',     -- Represent spaces with a dot
+  tab = '→ ',      -- Represent tabs with an arrow and a space
+  trail = '•',     -- Represent trailing spaces with a bullet
+  extends = '⟩',   -- Represent lines extending past the window with this symbol
+  precedes = '⟨',  -- Represent truncated lines with this symbol
+  nbsp = '␣',      -- Represent non-breaking spaces with this symbol
+  eol = '↲',       -- Represent end-of-line characters with an arrow
+}
+
+vim.api.nvim_create_autocmd("ColorScheme", {
+  callback = function()
+    vim.cmd [[
+      highlight NonText guifg=#333333
+      highlight Whitespace guifg=#333333
+    ]]
+  end,
+})
 
 -- Undercurl
 vim.cmd([[let &t_Cs = "\e[4:3m"]])
